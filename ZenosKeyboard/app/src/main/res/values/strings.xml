@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zenos Keyboard</string>
+    <string name="ime_name">Zenos Keyboard</string>
+    <string name="admin_label">Keyboard Settings</string>
+    <string name="subtype_en">English (US)</string>
+
+    <!-- Setup -->
+    <string name="setup_title">Setup Zenos Keyboard</string>
+    <string name="step1_title">1. Enable in System Settings</string>
+    <string name="step1_desc">Go to Settings → System → Languages → On-screen keyboard and enable Zenos Keyboard.</string>
+    <string name="step1_btn">Open Keyboard Settings</string>
+    <string name="step2_title">2. Set as Default</string>
+    <string name="step2_desc">Tap below to set Zenos Keyboard as your default input method.</string>
+    <string name="step2_btn">Set as Default</string>
+    <string name="open_admin_btn">Open Admin Settings</string>
+    <string name="setup_done">✓ Active</string>
+    <string name="setup_pending">Pending…</string>
+
+    <!-- Admin -->
+    <string name="admin_clipboard_title">Clipboard History</string>
+    <string name="admin_clear_clipboard">Clear All History</string>
+    <string name="admin_shortcuts_title">Text Shortcuts</string>
+    <string name="admin_add_shortcut">+ Add Shortcut</string>
+    <string name="admin_layout_title">Keyboard Layout</string>
+    <string name="shortcut_keyword_hint">Shortcut (e.g. @@email)</string>
+    <string name="shortcut_expansion_hint">Expands to…</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="empty_clipboard">No clipboard history yet.</string>
+    <string name="empty_shortcuts">No shortcuts defined yet.</string>
+    <string name="layout_qwerty">QWERTY</string>
+    <string name="layout_azerty">AZERTY</string>
+    <string name="layout_dvorak">Dvorak</string>
+</resources>

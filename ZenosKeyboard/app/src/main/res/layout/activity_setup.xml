@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/brand_primary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⌨ Zenos Keyboard"
+            android:textColor="@color/brand_accent"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your power keyboard — built for developers"
+            android:textColor="@color/on_surface_variant"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:paddingBottom="32dp"/>
+
+        <!-- Step 1 -->
+        <LinearLayout
+            android:id="@+id/step1_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step1_title"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step1_desc"
+                android:textColor="@color/on_surface_variant"
+                android:textSize="13sp"
+                android:paddingBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btn_enable"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/step1_btn"
+                    android:textSize="13sp"
+                    android:backgroundTint="@color/brand_accent"
+                    android:textColor="@color/brand_primary"/>
+
+                <TextView
+                    android:id="@+id/status_enable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setup_pending"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="12sp"
+                    android:layout_marginStart="12dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Step 2 -->
+        <LinearLayout
+            android:id="@+id/step2_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step2_title"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step2_desc"
+                android:textColor="@color/on_surface_variant"
+                android:textSize="13sp"
+                android:paddingBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btn_default"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/step2_btn"
+                    android:textSize="13sp"
+                    android:backgroundTint="@color/surface"
+                    android:textColor="@color/brand_accent"/>
+
+                <TextView
+                    android:id="@+id/status_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setup_pending"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="12sp"
+                    android:layout_marginStart="12dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Admin Settings -->
+        <Button
+            android:id="@+id/btn_admin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="⚙ Admin Settings"
+            android:textSize="15sp"
+            android:backgroundTint="@color/surface"
+            android:textColor="@color/brand_accent"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+</ScrollView>
