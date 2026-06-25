@@ -8,43 +8,27 @@ android {
 
     defaultConfig {
         applicationId "com.zenas.keyboard"
-        minSdk 24
+        minSdk 26
         targetSdk 34
         versionCode 1
         versionName "1.0.0"
-    }
-
-    signingConfigs {
-        release {
-            if (System.getenv("KEYSTORE_BASE64")) {
-                // CI: keystore decoded from secret
-                storeFile file("${rootProject.buildDir}/release.jks")
-                storePassword System.getenv("KEYSTORE_PASSWORD") ?: ""
-                keyAlias System.getenv("KEY_ALIAS") ?: ""
-                keyPassword System.getenv("KEY_PASSWORD") ?: ""
-            }
-        }
+        multiDexEnabled true
     }
 
     buildTypes {
         debug {
-            applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
             debuggable true
         }
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            if (System.getenv("KEYSTORE_BASE64")) {
-                signingConfig signingConfigs.release
-            }
         }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
     }
 
     buildFeatures {
@@ -53,6 +37,7 @@ android {
 }
 
 dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -63,4 +48,5 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata:2.7.0'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

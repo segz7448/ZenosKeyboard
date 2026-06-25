@@ -1,5 +1,6 @@
 package com.zenas.keyboard.ime;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.inputmethodservice.InputMethodService;
 import android.os.Vibrator;
