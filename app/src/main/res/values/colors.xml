@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand -->
+    <color name="brand_primary">#1A1A2E</color>
+    <color name="brand_accent">#00D4AA</color>
+    <color name="brand_accent_dark">#00A882</color>
+
+    <!-- Keyboard Dark Theme -->
+    <color name="key_bg">#2D2D3D</color>
+    <color name="key_bg_pressed">#00D4AA</color>
+    <color name="key_special_bg">#1A1A2E</color>
+    <color name="key_text">#FFFFFF</color>
+    <color name="key_text_pressed">#1A1A2E</color>
+    <color name="key_border">#3D3D5C</color>
+    <color name="keyboard_bg">#12121F</color>
+    <color name="key_shadow">#000000</color>
+
+    <!-- Termux Row -->
+    <color name="termux_key_bg">#0D3B2E</color>
+    <color name="termux_key_text">#00D4AA</color>
+    <color name="termux_key_pressed">#00D4AA</color>
+    <color name="termux_row_bg">#091A15</color>
+
+    <!-- Candidate / Suggestion bar -->
+    <color name="suggestion_bg">#1A1A2E</color>
+    <color name="suggestion_text">#CCCCCC</color>
+    <color name="suggestion_selected">#00D4AA</color>
+    <color name="suggestion_divider">#2D2D3D</color>
+
+    <!-- Clipboard / Admin -->
+    <color name="card_bg">#1E1E30</color>
+    <color name="surface">#252535</color>
+    <color name="on_surface">#E0E0E0</color>
+    <color name="on_surface_variant">#888899</color>
+    <color name="error">#FF5252</color>
+    <color name="divider">#2D2D3D</color>
+
+    <!-- General -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+</resources>

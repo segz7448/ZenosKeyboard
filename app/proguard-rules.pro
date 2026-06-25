@@ -1,0 +1,3 @@
+-keep class com.zenas.keyboard.** { *; }
+-keepattributes *Annotation*
+-dontwarn androidx.**

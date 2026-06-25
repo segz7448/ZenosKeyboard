@@ -1,0 +1,115 @@
+name: Build ZenosKeyboard APK
+
+on:
+  push:
+    branches: [ main, master, dev ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
+
+      # ── Debug build (always) ─────────────────────────────────────────────────
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZenosKeyboard-debug
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 30
+
+      # ── Release build (only on tag push with keystore secrets) ──────────────
+      - name: Decode Keystore
+        if: startsWith(github.ref, 'refs/tags/v') && env.KEYSTORE_BASE64 != ''
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          mkdir -p build
+          echo "$KEYSTORE_BASE64" | base64 --decode > build/release.jks
+
+      - name: Build Release APK
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Upload Release APK
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZenosKeyboard-release
+          path: app/build/outputs/apk/release/*.apk
+          retention-days: 90
+
+      # ── GitHub Release (on tag) ──────────────────────────────────────────────
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            app/build/outputs/apk/release/*.apk
+            app/build/outputs/apk/debug/*.apk
+          generate_release_notes: true
+          body: |
+            ## ⌨ Zenos Keyboard ${{ github.ref_name }}
+
+            ### Features
+            - 📋 Clipboard history manager (auto-captures, horizontal strip + admin viewer)
+            - ⚡ Custom text shortcuts / expansion (type `@@ty` → "Thank you!")
+            - 🖥 Dedicated Termux row: Ctrl+C · Ctrl+Z · Ctrl+D · Ctrl+L · Tab
+            - ⚙ Admin settings: clipboard viewer, shortcut manager, layout switcher
+            - 🌐 Layout support: QWERTY · AZERTY · Dvorak
+
+            ### Install
+            1. Download the APK below
+            2. Enable **Unknown Sources** on your device
+            3. Install and open **Zenos Keyboard**
+            4. Follow the setup steps to enable & set as default
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Lint check ──────────────────────────────────────────────────────────────
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+      - run: chmod +x gradlew
+      - name: Run Lint
+        run: ./gradlew lint --no-daemon
+      - name: Upload Lint Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: app/build/reports/lint-results*.html
+          retention-days: 7
